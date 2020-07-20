@@ -10,6 +10,27 @@
   A <code> JavaScript</code> and <code> TypeScript</code> library for measuring and scaling to functions.
 </div>
 
+<br>
+<div align="center">
+<a href="https://nodejs.org/api/documentation.html#documentation_stability_index">
+    <img src="https://img.shields.io/badge/stability-experimental-orange.svg?style=flat-square"
+      alt="API stability" />
+  </a>
+
+<a href="https://circleci.com/gh/ahmetcanozcan/quben"> 
+<img src="https://img.shields.io/circleci/build/gh/ahmetcanozcan/quben?style=flat-square" />
+</a>
+
+<a>
+<img src="https://img.shields.io/github/license/ahmetcanozcan/quben?style=flat-square" />
+</a>
+  
+<a href="https://circleci.com/gh/ahmetcanozcan/quben"> 
+<img src="https://img.shields.io/npm/v/quben?style=flat-square" />
+</a>
+
+</div>
+
 <br />
 
 ## Installation
