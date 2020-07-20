@@ -1,7 +1,7 @@
 {
   "name": "quben",
   "version": "0.0.1",
-  "description": "",
+  "description": "Extendable function bencmarking tool",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -10,7 +10,11 @@
     "test": "jest",
     "start": " npm run build && node dist"
   },
-  "keywords": [],
+  "keywords": [
+    "Function",
+    "benchmark",
+    "tool"
+  ],
   "author": "Ahmetcan ÖZCAN <ahmetcanozcan7@gmail.com>",
   "license": "ISC",
   "devDependencies": {

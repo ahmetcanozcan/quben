@@ -26,17 +26,17 @@ export default class Benchmarker {
 
   public eval(func: Function): Function {
     const self = this;
-    return function (...args: any[]) {
-      const startTime: number | [number, number] = isNode
-        ? process.hrtime()
-        : Date.now();
+    let startTime: number | [number, number] = 0;
+    const start = (...args: any[]) => {
+      startTime = isNode ? process.hrtime() : Date.now();
       self.executeRules(0, {
         fname: func.name,
         time: 0,
         status: BenchStatus.START,
         args,
       });
-      const res = func(...args);
+    };
+    const end = (...args: any[]) => {
       const executionTime: number | [number, number] = isNode
         ? (() => {
             const e = process.hrtime(startTime as [number, number]);
@@ -49,8 +49,22 @@ export default class Benchmarker {
         status: BenchStatus.END,
         args,
       });
+    };
 
-      return res;
+    return function (...args: any[]) {
+      start(...args);
+      const s = Date.now();
+      let r = func(...args);
+      if (r && r.then !== undefined && typeof r.then === "function") {
+        r.then((e: any) => {
+          end(...args);
+          return e;
+        });
+      } else {
+        end(...args);
+      }
+
+      return r;
     };
   }
 }
