@@ -27,12 +27,12 @@ import quben, { rules } from "quben";
 
 quben.addRule(rules.basicLogger);
 
-const fraction = quben(function recursive(num: number): number {
+const factorial = quben(function recursive(num: number): number {
   if (num <= 1) return 1;
   return num * recursive(--num);
 });
 
-console.log(fraction(5));
+console.log(factorial(5));
 // prints:
 // recursive( 5 ) executed in 0.1371ms
 // 120
