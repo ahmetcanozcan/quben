@@ -4,7 +4,7 @@ import Rule from "./Rule";
 import RuleContext from "./RuleContext";
 
 export default class Benchmarker {
-  private rules: Array<Rule>;
+  private rules: Rule[];
 
   constructor() {
     this.rules = [];
@@ -24,7 +24,7 @@ export default class Benchmarker {
     });
   }
 
-  public eval(func: Function): Function {
+  public eval(func: Function, ruleOptions: any): Function {
     const self = this;
     let startTime: number | [number, number] = 0;
     const start = (...args: any[]) => {
@@ -34,6 +34,7 @@ export default class Benchmarker {
         time: 0,
         status: BenchStatus.START,
         args,
+        ruleOptions,
       });
     };
     const end = (...args: any[]) => {
@@ -48,6 +49,7 @@ export default class Benchmarker {
         time: executionTime,
         status: BenchStatus.END,
         args,
+        ruleOptions,
       });
     };
 

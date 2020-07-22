@@ -5,7 +5,7 @@ describe("Benchmarker tests", () => {
   it("Benchmarker evaluate function", () => {
     const bm = new Benchmarker();
     let flag: boolean = false;
-    const f = bm.eval((v: boolean) => (flag = v));
+    const f = bm.eval((v: boolean) => (flag = v), {});
     f(true);
     expect(flag).toBe(true);
   });
@@ -30,7 +30,7 @@ describe("Benchmarker tests", () => {
       }
       next();
     });
-    const f = bm.eval(() => {});
+    const f = bm.eval(() => {}, {});
     f();
     expect(str).toBe("hello world");
   });
@@ -49,7 +49,7 @@ describe("Benchmarker tests", () => {
       let s = Date.now();
       for (let i = 0; i < 1e7; i++) {}
       fnExecutionTime = Date.now() - s;
-    });
+    }, {});
     f();
     expect(Math.abs(bmExecutionTime - fnExecutionTime)).toBeLessThanOrEqual(
       100
@@ -61,7 +61,7 @@ describe("Benchmarker tests", () => {
     const val = "test";
     const f = bm.eval(() => {
       return val;
-    });
+    }, {});
     expect(f()).toBe(val);
   });
 });

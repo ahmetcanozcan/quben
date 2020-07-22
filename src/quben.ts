@@ -4,8 +4,8 @@ import Rule from "./Rule";
 
 let benchmarker = new Benchmarker();
 
-function qubenFunction(func: Function) {
-  return benchmarker.eval(func);
+function qubenFunction(func: Function, ruleOptions: any = {}) {
+  return benchmarker.eval(func, ruleOptions);
 }
 
 qubenFunction.use = function (b: Benchmarker) {

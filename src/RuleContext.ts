@@ -5,6 +5,7 @@ type RuleContext = {
   args: any[];
   status: BenchStatus;
   fname: string;
+  ruleOptions: any;
 };
 
 export default RuleContext;
