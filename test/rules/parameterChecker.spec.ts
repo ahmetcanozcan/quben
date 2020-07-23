@@ -1,8 +1,8 @@
-import quben, { rules } from "../../src";
-import Benchmarker from "../../src/Benchmarker";
+import quben, { rules } from '../../src';
+import Benchmarker from '../../src/Benchmarker';
 
-describe("Custom rules works correctly", () => {
-  it("Parameter rule checks parameter", () => {
+describe('Custom rules works correctly', () => {
+  it('Parameter rule checks parameter', () => {
     quben.use(new Benchmarker());
     quben.addRule(rules.parameterChecker);
     const f = quben(
@@ -22,7 +22,7 @@ describe("Custom rules works correctly", () => {
     }
     expect(flag).toBe(true);
   });
-  it("Parameter rule checks custom types", () => {
+  it('Parameter rule checks custom types', () => {
     quben.use(new Benchmarker());
     quben.addRule(rules.parameterChecker);
     class Person {
@@ -43,7 +43,7 @@ describe("Custom rules works correctly", () => {
       }
     );
 
-    const person = new Person("John Doe", 17);
+    const person = new Person('John Doe', 17);
     expect(f(person)).toBe(17);
     let flag = false;
     try {
@@ -54,7 +54,7 @@ describe("Custom rules works correctly", () => {
     expect(flag).toBe(true);
   });
 
-  it("Parameter rule checks object types", () => {
+  it('Parameter rule checks object types', () => {
     quben.use(new Benchmarker());
     quben.addRule(rules.parameterChecker);
 
@@ -72,7 +72,7 @@ describe("Custom rules works correctly", () => {
     expect(flag).toBe(true);
   });
 
-  it("Parameter rule checks nested object types", () => {
+  it('Parameter rule checks nested object types', () => {
     quben.use(new Benchmarker());
     quben.addRule(rules.parameterChecker);
 

@@ -1,6 +1,6 @@
-import Benchmarker from "./Benchmarker";
-import { BenchStatus } from "./enums";
-import Rule from "./Rule";
+import Benchmarker from './Benchmarker';
+import { BenchStatus } from './enums';
+import Rule from './Rule';
 
 let benchmarker = new Benchmarker();
 

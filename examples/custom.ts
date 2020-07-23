@@ -1,28 +1,28 @@
-import quben, { rules } from "quben";
+import quben, { rules } from 'quben';
 
 // This rule will be executed before function execution
 quben.addStartRule((ctx, next) => {
-  console.log("Before Function Execution");
+  console.log('Before Function Execution');
   next();
 });
 
 // This rule will be executed after function execution
 quben.addEndRule((ctx, next) => {
-  console.log("After Function Execution");
+  console.log('After Function Execution');
   next();
 });
 
 // This rule will be executed before and after function execution
 quben.addRule((ctx, next) => {
-  if (ctx.status == "start") {
-    console.log("before");
-  } else if (ctx.status == "end") {
-    console.log("after");
+  if (ctx.status == 'start') {
+    console.log('before');
+  } else if (ctx.status == 'end') {
+    console.log('after');
   }
 });
 
 const f = quben(() => {
-  console.log("Function block");
+  console.log('Function block');
 });
 
 f();

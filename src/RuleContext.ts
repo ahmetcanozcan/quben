@@ -1,4 +1,4 @@
-import { BenchStatus } from "./enums";
+import { BenchStatus } from './enums';
 
 type RuleContext = {
   time: number;

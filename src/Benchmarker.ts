@@ -1,7 +1,7 @@
-import { isNode } from "./constants";
-import { BenchStatus } from "./enums";
-import Rule from "./Rule";
-import RuleContext from "./RuleContext";
+import { isNode } from './constants';
+import { BenchStatus } from './enums';
+import Rule from './Rule';
+import RuleContext from './RuleContext';
 
 export default class Benchmarker {
   private rules: Rule[];
@@ -57,7 +57,7 @@ export default class Benchmarker {
       start(...args);
       const s = Date.now();
       let r = func(...args);
-      if (r && r.then !== undefined && typeof r.then === "function") {
+      if (r && r.then !== undefined && typeof r.then === 'function') {
         r.then((e: any) => {
           end(...args);
           return e;

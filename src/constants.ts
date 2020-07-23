@@ -1,1 +1,1 @@
-export const isNode = typeof window === "undefined";
+export const isNode = typeof window === 'undefined';

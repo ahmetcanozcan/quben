@@ -1,2 +1,2 @@
-export { default as basicLogger } from "./basicLogger";
-export { default as parameterChecker } from "./parameterChecker";
+export { default as basicLogger } from './basicLogger';
+export { default as parameterChecker } from './parameterChecker';

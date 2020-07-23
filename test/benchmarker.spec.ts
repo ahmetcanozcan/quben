@@ -1,8 +1,8 @@
-import Benchmarker from "../src/Benchmarker";
-import { BenchStatus } from "../src/enums";
+import Benchmarker from '../src/Benchmarker';
+import { BenchStatus } from '../src/enums';
 
-describe("Benchmarker tests", () => {
-  it("Benchmarker evaluate function", () => {
+describe('Benchmarker tests', () => {
+  it('Benchmarker evaluate function', () => {
     const bm = new Benchmarker();
     let flag: boolean = false;
     const f = bm.eval((v: boolean) => (flag = v), {});
@@ -10,32 +10,32 @@ describe("Benchmarker tests", () => {
     expect(flag).toBe(true);
   });
 
-  it("Benchmarker executes rules", () => {
+  it('Benchmarker executes rules', () => {
     const bm = new Benchmarker();
 
-    let str: string = "";
+    let str: string = '';
     bm.add((ctx, next) => {
       if (ctx.status == BenchStatus.START) {
-        str += "hel";
+        str += 'hel';
       } else {
-        str += "wor";
+        str += 'wor';
       }
       next();
     });
     bm.add((ctx, next) => {
       if (ctx.status == BenchStatus.START) {
-        str += "lo ";
+        str += 'lo ';
       } else {
-        str += "ld";
+        str += 'ld';
       }
       next();
     });
     const f = bm.eval(() => {}, {});
     f();
-    expect(str).toBe("hello world");
+    expect(str).toBe('hello world');
   });
 
-  it("Benchmarker calculates execution time ", () => {
+  it('Benchmarker calculates execution time ', () => {
     const bm = new Benchmarker();
     let bmExecutionTime: number = 0;
     bm.add((ctx, next) => {
@@ -56,9 +56,9 @@ describe("Benchmarker tests", () => {
     );
   });
 
-  test("Evaluated functions returns correctly", () => {
+  test('Evaluated functions returns correctly', () => {
     const bm = new Benchmarker();
-    const val = "test";
+    const val = 'test';
     const f = bm.eval(() => {
       return val;
     }, {});

@@ -1,8 +1,8 @@
-import { BenchStatus } from "../enums";
-import Rule from "../Rule";
+import { BenchStatus } from '../enums';
+import Rule from '../Rule';
 
 const getTypeString = (v: any): string => {
-  if (typeof v === "function") {
+  if (typeof v === 'function') {
     return (v as Function).name.toLowerCase();
   }
   return (v.constructor.name as string).toLowerCase();
@@ -12,7 +12,7 @@ const checkTypeMatch = (arg: any, target: any): boolean => {
   const targetType: string = getTypeString(target);
   if (targetType !== argType) {
     return false;
-  } else if (argType === "object") {
+  } else if (argType === 'object') {
     for (let key in target) {
       if (!(key in arg && checkTypeMatch(arg[key], target[key]))) {
         return false;

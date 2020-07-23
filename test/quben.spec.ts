@@ -1,17 +1,17 @@
-import quben from "../src";
-import Benchmarker from "../src/Benchmarker";
-import { BenchStatus } from "../src/enums";
+import quben from '../src';
+import Benchmarker from '../src/Benchmarker';
+import { BenchStatus } from '../src/enums';
 
-const testVal = "test";
+const testVal = 'test';
 
-describe("Quben tests", () => {
-  it("Quben evaluate funnction", () => {
+describe('Quben tests', () => {
+  it('Quben evaluate funnction', () => {
     const f = quben(() => testVal);
-    expect(typeof f).toBe("function");
+    expect(typeof f).toBe('function');
     expect(f()).toBe(testVal);
   });
 
-  it("Quben evaluate async function", async () => {
+  it('Quben evaluate async function', async () => {
     const timeout = (ms: number) => {
       return new Promise((resolve) => setTimeout(resolve, ms));
     };
@@ -31,7 +31,7 @@ describe("Quben tests", () => {
     expect(executionTime).toBeGreaterThanOrEqual(300);
   });
 
-  it("Quben can use custom bm", () => {
+  it('Quben can use custom bm', () => {
     let flag: boolean = false;
     const bm = new Benchmarker().add((ctx, next) => {
       if (ctx.status == BenchStatus.END) {

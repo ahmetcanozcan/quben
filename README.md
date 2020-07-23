@@ -44,7 +44,7 @@ npm install quben
 ## Usage
 
 ```typescript
-import quben, { rules } from "quben";
+import quben, { rules } from 'quben';
 
 quben.addRule(rules.basicLogger);
 

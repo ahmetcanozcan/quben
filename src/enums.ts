@@ -1,4 +1,4 @@
 export enum BenchStatus {
-  START = "start",
-  END = "end",
+  START = 'start',
+  END = 'end',
 }
