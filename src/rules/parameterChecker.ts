@@ -1,5 +1,7 @@
-import { BenchStatus } from '../enums';
-import Rule from '../Rule';
+import BenchStatus from '../benchStatus';
+import Rule from '../rule';
+
+type ParamCheckerOption = {};
 
 const getTypeString = (v: any): string => {
   if (typeof v === 'function') {
@@ -22,7 +24,7 @@ const checkTypeMatch = (arg: any, target: any): boolean => {
   return true;
 };
 
-const parameterChecker: Rule = (ctx, next) => {
+const parameterChecker = (option?: ParamCheckerOption): Rule => (ctx, next) => {
   if (ctx.status !== BenchStatus.START) {
     return next();
   }

@@ -1,17 +1,17 @@
-import Benchmarker from '../src/Benchmarker';
-import { BenchStatus } from '../src/enums';
+import Evaluater from '../src/evaluater';
+import BenchStatus from '../src/benchStatus';
 
-describe('Benchmarker tests', () => {
-  it('Benchmarker evaluate function', () => {
-    const bm = new Benchmarker();
+describe('Evaluater tests', () => {
+  it('Evaluater evaluate function', () => {
+    const bm = new Evaluater();
     let flag: boolean = false;
     const f = bm.eval((v: boolean) => (flag = v), {});
     f(true);
     expect(flag).toBe(true);
   });
 
-  it('Benchmarker executes rules', () => {
-    const bm = new Benchmarker();
+  it('Evaluater executes rules', () => {
+    const bm = new Evaluater();
 
     let str: string = '';
     bm.add((ctx, next) => {
@@ -35,8 +35,8 @@ describe('Benchmarker tests', () => {
     expect(str).toBe('hello world');
   });
 
-  it('Benchmarker calculates execution time ', () => {
-    const bm = new Benchmarker();
+  it('Evaluater calculates execution time ', () => {
+    const bm = new Evaluater();
     let bmExecutionTime: number = 0;
     bm.add((ctx, next) => {
       if (ctx.status === BenchStatus.END) {
@@ -57,7 +57,7 @@ describe('Benchmarker tests', () => {
   });
 
   test('Evaluated functions returns correctly', () => {
-    const bm = new Benchmarker();
+    const bm = new Evaluater();
     const val = 'test';
     const f = bm.eval(() => {
       return val;

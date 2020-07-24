@@ -1,16 +1,20 @@
 import { isNode } from './constants';
-import { BenchStatus } from './enums';
-import Rule from './Rule';
-import RuleContext from './RuleContext';
+import BenchStatus from './benchStatus';
+import Rule from './rule';
+import RuleContext from './ruleContext';
 
-export default class Benchmarker {
+export default class Evaluater {
   private rules: Rule[];
 
-  constructor() {
-    this.rules = [];
+  constructor(rules: Rule[] = []) {
+    this.rules = rules;
   }
 
-  public add(rule: Rule): Benchmarker {
+  public fork(): Evaluater {
+    return new Evaluater([...this.rules]);
+  }
+
+  public add(rule: Rule): Evaluater {
     this.rules.push(rule);
     return this;
   }

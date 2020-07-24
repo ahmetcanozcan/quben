@@ -41,12 +41,12 @@ Use the package manager [npm](https://www.npmjs.com/) to install quben.
 npm install quben
 ```
 
-## Usage
+## Getting Started
 
 ```typescript
 import quben, { rules } from 'quben';
 
-quben.addRule(rules.basicLogger);
+quben.addRule(rules.logger());
 
 const factorial = quben(function recursive(num: number): number {
   if (num <= 1) return 1;
@@ -57,6 +57,44 @@ console.log(factorial(5));
 // prints:
 // recursive( 5 ) executed in 0.1371ms
 // 120
+```
+
+You can add your custom rules
+
+```typescript
+import quben from 'quben';
+
+// This rule will be executed before function execution
+quben.addBeforeRule((ctx, next) => {
+  console.log('Before Function Execution');
+  next();
+});
+
+// This rule will be executed after function execution
+quben.addAfterRule((ctx, next) => {
+  console.log('After Function Execution');
+  next();
+});
+
+// This rule will be executed before and after function execution
+quben.addRule((ctx, next) => {
+  if (ctx.status == 'start') {
+    console.log('before');
+  } else if (ctx.status == 'end') {
+    console.log('after');
+  }
+});
+
+const f = quben(() => {
+  console.log('Function block');
+});
+
+f();
+// Before Function Execution
+// before
+// Function block
+//After Function Execution
+// after
 ```
 
 For more example, you can check out the `examples` folder

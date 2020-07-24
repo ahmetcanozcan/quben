@@ -1,7 +1,7 @@
 const quben = require('quben').default;
 const rules = require('quben').rules;
 
-quben.addRule(rules.parameterChecker);
+quben.addRule(rules.parameterChecker());
 
 const sum = quben((a, b) => a + b, { params: [Number, Number] });
 

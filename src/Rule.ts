@@ -1,5 +1,5 @@
-import { BenchStatus } from './enums';
-import RuleContext from './RuleContext';
+import BenchStatus from './benchStatus';
+import RuleContext from './ruleContext';
 
 type NextFunction = (err?: any) => void;
 

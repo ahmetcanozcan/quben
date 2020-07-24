@@ -1,6 +1,6 @@
 import quben, { rules } from 'quben';
 
-quben.addRule(rules.basicLogger);
+quben.addRule(rules.basicLogger());
 
 // plain recursive function;
 const fraction = quben(function recursive(num: number): number {

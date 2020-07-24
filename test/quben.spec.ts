@@ -1,6 +1,7 @@
 import quben from '../src';
-import Benchmarker from '../src/Benchmarker';
-import { BenchStatus } from '../src/enums';
+import Evaluater from '../src/evaluater';
+import BenchStatus from '../src/benchStatus';
+import Rule from '../src/rule';
 
 const testVal = 'test';
 
@@ -16,8 +17,8 @@ describe('Quben tests', () => {
       return new Promise((resolve) => setTimeout(resolve, ms));
     };
     let executionTime = 0;
-    quben.use(new Benchmarker());
-    quben.addEndRule((ctx, next) => {
+    quben.use(new Evaluater());
+    quben.addAfterRule((ctx, next) => {
       executionTime = ctx.time;
       next();
     });
@@ -33,7 +34,7 @@ describe('Quben tests', () => {
 
   it('Quben can use custom bm', () => {
     let flag: boolean = false;
-    const bm = new Benchmarker().add((ctx, next) => {
+    const bm = new Evaluater().add((ctx, next) => {
       if (ctx.status == BenchStatus.END) {
         flag = true;
       }
@@ -42,5 +43,57 @@ describe('Quben tests', () => {
     const f = quben(() => testVal);
     expect(f()).toBe(testVal);
     expect(flag).toBe(true);
+  });
+
+  it('new  function works properly', () => {
+    quben.use(new Evaluater());
+    let foo = 0;
+    let bar = 0;
+    const ruleFoo: Rule = (ctx, next) => {
+      foo++;
+      next();
+    };
+    const ruleBar: Rule = (ctx, next) => {
+      bar++;
+      next();
+    };
+    quben.addBeforeRule(ruleFoo);
+    const newQuben = quben.new();
+    newQuben.addBeforeRule(ruleBar);
+
+    const fooFunc = quben(() => {});
+    const barFunc = newQuben(() => {});
+
+    fooFunc();
+    barFunc();
+
+    expect(foo).toBe(1);
+    expect(bar).toBe(1);
+  });
+
+  it('fork function works properly', () => {
+    quben.use(new Evaluater());
+    let foo = 0;
+    let bar = 0;
+    const ruleFoo: Rule = (ctx, next) => {
+      foo++;
+      next();
+    };
+    const ruleBar: Rule = (ctx, next) => {
+      bar++;
+      next();
+    };
+    quben.addBeforeRule(ruleFoo);
+    const forkQuben = quben.fork();
+    forkQuben.addBeforeRule(ruleBar);
+
+    const fooFunc = quben(() => {});
+    const barFunc = forkQuben(() => {});
+
+    fooFunc();
+    barFunc();
+
+    expect(foo).toBe(2);
+    expect(bar).toBe(1);
   });
 });

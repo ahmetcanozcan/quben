@@ -1,6 +1,6 @@
 import quben, { rules } from 'quben';
 
-quben.addRule(rules.basicLogger);
+quben.addRule(rules.logger());
 
 // Basic timout function implementation.
 const timeout = (ms: number) =>

@@ -1,10 +1,10 @@
 import quben, { rules } from '../../src';
-import Benchmarker from '../../src/Benchmarker';
+import Evaluater from '../../src/evaluater';
 
 describe('Custom rules works correctly', () => {
   it('Parameter rule checks parameter', () => {
-    quben.use(new Benchmarker());
-    quben.addRule(rules.parameterChecker);
+    quben.use(new Evaluater());
+    quben.addRule(rules.parameterChecker());
     const f = quben(
       function testFunc(x: number, y: number): number {
         return x + y;
@@ -23,8 +23,8 @@ describe('Custom rules works correctly', () => {
     expect(flag).toBe(true);
   });
   it('Parameter rule checks custom types', () => {
-    quben.use(new Benchmarker());
-    quben.addRule(rules.parameterChecker);
+    quben.use(new Evaluater());
+    quben.addRule(rules.parameterChecker());
     class Person {
       public name: string;
       public age: number;
@@ -55,8 +55,8 @@ describe('Custom rules works correctly', () => {
   });
 
   it('Parameter rule checks object types', () => {
-    quben.use(new Benchmarker());
-    quben.addRule(rules.parameterChecker);
+    quben.use(new Evaluater());
+    quben.addRule(rules.parameterChecker());
 
     const vectorLength = quben((obj: any) => obj.x + obj.y, {
       params: [{ x: Number, y: Number }],
@@ -73,8 +73,8 @@ describe('Custom rules works correctly', () => {
   });
 
   it('Parameter rule checks nested object types', () => {
-    quben.use(new Benchmarker());
-    quben.addRule(rules.parameterChecker);
+    quben.use(new Evaluater());
+    quben.addRule(rules.parameterChecker());
 
     const nestedFunction = quben((obj: any) => obj.vec.x + obj.vec.y, {
       params: [{ vec: { x: Number, y: Number } }],

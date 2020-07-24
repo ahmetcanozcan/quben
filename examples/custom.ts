@@ -1,13 +1,13 @@
 import quben, { rules } from 'quben';
 
 // This rule will be executed before function execution
-quben.addStartRule((ctx, next) => {
+quben.addBeforeRule((ctx, next) => {
   console.log('Before Function Execution');
   next();
 });
 
 // This rule will be executed after function execution
-quben.addEndRule((ctx, next) => {
+quben.addAfterRule((ctx, next) => {
   console.log('After Function Execution');
   next();
 });
